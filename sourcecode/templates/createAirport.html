@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+{% block title %}Create Airport{% endblock %}
+{% block body %}
+
+    <div class="flights m-3">
+      <div class="container">
+  
+      <h1>Create Airport</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('createAirportAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <br><header>
+          <h3>Airport Info</h3>
+          </header>
+        <div class="mb-3">
+            <label for="nameAirport" class="form-label">Name</label>
+            <input type="text" id="nameAirport" name="nameAirport" class="form-control">
+          </div>
+        <div class="mb-3">
+          <label for="cityAirport" class="form-label">City</label>
+          <input type="text" id="cityAirport" name="cityAirport" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="countryAirport" class="form-label">Country</label>
+            <input type="text" id="countryAirport" name="countryAirport" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="typeAirport" class="form-label">Type</label>
+            <input type="text" id="typeAirport" name="typeAirport" placeholder = "(Domestic, International, Both)" class="form-control">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>      
+        
+      </div>
+    </div>
+{% endblock %}

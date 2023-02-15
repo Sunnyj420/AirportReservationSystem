@@ -1,0 +1,57 @@
+{% extends "layouts/base.html" %}
+{% block title %}Flight Report{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>Flight Report</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+      
+      <form action="{{ url_for('viewReportAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="text" id="startDate" placeholder="YYYY-MM-DD" name="startDate" class="form-control">
+          </div>
+
+        <div class="mb-3">
+        <label for="endDate" class="form-label">Stop Date</label>
+        <input type="text" id="endDate" placeholder="YYYY-MM-DD" name="endDate" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        {% if not error %}
+            <table>
+                <th>Total Amount of Tickets Sold</th>
+                
+            {% for line in data1 %} 
+                <tr>
+                <td>{{line['num_tickets']}}</td>
+                </tr>
+            {% endfor %}
+            </table><br><br>
+            <table>
+                <th>Month</th>
+                <th>Amount of Tickets Sold</th>
+                
+            {% for line in data2 %} 
+                <tr>
+                <td>{{line['month']}}</td>
+                <td>{{line['num_ticket']}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </form>  
+       
+    </div>
+  </div>
+  {% endblock %}

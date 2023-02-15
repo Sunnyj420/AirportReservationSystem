@@ -1,0 +1,76 @@
+{% extends "layouts/base.html" %}
+{% block title %}Customer Registration{% endblock %}
+{% block body %}
+<div class="login m-3">
+  <div class="container">
+    <h1>Registration</h1><br>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('customerRegisterAuth', next=request.endpoint) }}" class="login" method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Email Address</label>
+        <input type="email" id="username" placeholder="name@example.com" name="username" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control">
+      </div><br>
+
+      <header>
+        <h3>General Info</h3>
+        </header>
+	    <div class="mb-3">
+        <label for="customerName" class="form-label">Full Name</label>
+        <input type="text" id="customerName" name="customerName" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="birthday" class="form-label">Date of Birth</label>
+        <input type="text" id="birthday" name="birthday" placeholder="YYYY-MM-DD" class="form-control">
+      </div><br>
+    
+    <header>
+        <h3>Address</h3>
+      </header>
+	  <div class="mb-3">
+        <label for="buildingNumber" class="form-label">Address Building Number</label>
+        <input type="text" id="buildingNumber" name="buildingNumber" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="streetName" class="form-label">Address Street</label>
+        <input type="text" id="streetName" name="streetName" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="cityName" class="form-label">Address City</label>
+        <input type="text" id="cityName" name="cityName" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="stateName" class="form-label">Address State</label>
+        <input type="text" id="stateName" name="stateName" class="form-control">
+    </div><br>
+
+    <header>
+      <h3>Passport Info</h3>
+    </header>
+	  <div class="mb-3">
+        <label for="passportNumber" class="form-label">Passport Number</label>
+        <input type="text" id="passportNumber" name="passportNumber" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="passportExpire" class="form-label">Passport Expiration Date</label>
+        <input type="text" id="passportExpire" name="passportExpire" placeholder="YYYY-MM-DD" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="passportCountry" class="form-label">Passport Country</label>
+        <input type="text" id="passportCountry" name="passportCountry" class="form-control">
+      </div>
+	  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

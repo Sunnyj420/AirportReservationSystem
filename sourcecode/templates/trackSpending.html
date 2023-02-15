@@ -1,0 +1,107 @@
+{% extends "layouts/base.html" %}
+{% block title %}Track Spending{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+  <div class="container">
+
+    <h1>Track Spending</h1>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('trackSpendingAuth', next=request.endpoint) }}" class="flights" method="POST">
+
+        <div class="mb-3">
+            <label for="customerEmail" class="form-label">Email Address</label>
+            <input type="email" id="customerEmail" placeholder="name@example.com" name="customerEmail" class="form-control">
+          </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button><br><br>
+      
+      {% if not error %}
+        <table>
+          
+          <th>Ticket ID</th>
+          <th>Price</th>
+          
+        
+        {% for line in data1 %} 
+          <tr>
+            <td>{{line['t_id']}}</td>
+            <td>{{line['sold_price']}}</td>
+            
+          </tr>
+        {% endfor %}
+        </table><br><br>
+        <table>
+          
+            <th>Total Spent in the Last 6 Months</th>
+           
+            {% for line in data3 %} 
+          <tr>
+            <td>{{line['total_sum']}}</td>
+            
+          </tr>
+        {% endfor %}
+        
+          </table>
+      {% endif %}<br><br>
+      <div class="mb-3">
+        <label for="customerEmail2" class="form-label">Email Address</label>
+        <input type="email" id="customerEmail2" placeholder="name@example.com" name="customerEmail2" class="form-control">
+      </div>
+      
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="text" id="startDate" placeholder="YYYY-MM-DD" name="startDate" class="form-control">
+          </div>
+
+        <div class="mb-3">
+        <label for="endDate" class="form-label">Stop Date</label>
+        <input type="text" id="endDate" placeholder="YYYY-MM-DD" name="endDate" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button><br>
+
+        {% if not error %}
+        <table>
+          
+          <th>Ticket ID</th>
+          <th>Price</th>
+          
+        
+        {% for line in data2 %} 
+          <tr>
+            <td>{{line['t_id']}}</td>
+            <td>{{line['sold_price']}}</td>
+            
+          </tr>
+        {% endfor %}
+        </table><br><br>
+        <table>
+          
+            <th>Total Spent in the Time Period</th>
+           
+            {% for line in data4 %} 
+          <tr>
+            <td>{{line['total_sum']}}</td>
+            
+          </tr>
+        {% endfor %}
+        
+          </table>
+        <br><br>
+        {% endif %}
+
+    </form>
+      
+  </div>
+</div>
+{% endblock %}

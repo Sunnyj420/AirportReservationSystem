@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+{% block title %}Flight Ratings{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>Flight Ratings</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+      
+      <form action="{{ url_for('viewRatingsAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="flightNumber" class="form-label">Flight Number</label>
+            <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureDate" class="form-label">Departure Date</label>
+            <input type="text" id="departureDate" name="departureDate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureTime" class="form-label">Departure Time</label>
+            <input type="text" id="departureTime" name="departureTime" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        {% if not error %}
+        <table>
+            <th>Flight Number</th>
+            <th>Average Rating</th>
+            
+        {% for line in data2 %} 
+            <tr>
+            <td>{{line['flight_number']}}</td>
+            <td>{{line['avg_rating']}}</td>
+            </tr>
+        {% endfor %}
+        </table><br><br>
+        <table>
+            <th>Customer Email</th>
+            <th>Rating</th>
+            <th>Comments</th>
+            
+        {% for line in data1 %} 
+            <tr>
+            <td>{{line['email']}}</td>
+            <td>{{line['rating']}}</td>
+            <td>{{line['comments']}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+      {% endif %}
+    </form>  
+       
+    </div>
+  </div>
+  {% endblock %}

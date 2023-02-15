@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+{% block title %}Create Airplane{% endblock %}
+{% block body %}
+
+    <div class="airplane m-3">
+      <div class="container">
+  
+      <h1>Create Airplane</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('createAirplaneAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="staffAirline" class="form-label">Staff Airline</label>
+            <input type="text" id="staffAirline" name="staffAirline" class="form-control">
+          </div>
+        <div class="mb-3">
+            <label for="airline" class="form-label">Airplane Airline</label>
+            <input type="text" id="airline" name="airline" class="form-control">
+          </div>
+        <div class="mb-3">
+            <label for="airplaneID" class="form-label">Airplane ID</label>
+            <input type="text" id="airplaneID" name="airplaneID" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="numOfSeats" class="form-label">Number of Seats</label>
+            <input type="text" id="numOfSeats" name="numOfSeats" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="manufacturingCompany" class="form-label">Manufacturing Company</label>
+            <input type="text" id="manufacturingCompany" name="manufacturingCompany" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" id="age" name="age" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>      
+        
+      </div>
+    </div>
+{% endblock %}

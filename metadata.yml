@@ -1,0 +1,15 @@
+---
+:id: 153291850
+:submitters:
+- :name: Angela Yeung
+  :email: ay2095@nyu.edu
+- :name: Ketan Vanjani
+  :email: kv932@nyu.edu
+- :name: Sunny Jeong
+  :email: sj3048@nyu.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2022-12-08 22:19:47.364420000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2022-12-08 14:19:47.364420000 Z
+:status: processed

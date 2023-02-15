@@ -1,0 +1,65 @@
+{% extends "layouts/base.html" %}
+{% block title %}One Way Flight Search{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+  <div class="container">
+
+    <h1>Flight Search</h1>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('onewayflightsAuth', next=request.endpoint) }}" class="flights" method="POST">
+
+        <div class="mb-3">
+            <label for="flightDepartureAirportInput" class="form-label">Departure Airport</label>
+            <input type="text" id="flightDepartureAirportInput" name="departureAirport" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="flightArrivalAirportInput" class="form-label">Arrival Airport</label>
+            <input type="text" id="flightArrivalAirportInput" name="arrivalAirport" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="flightDepartureDateInput" class="form-label">Departure Date</label>
+            <input type="text" id="flightDepartureDateInput" placeholder="YYYY-MM-DD" name="departureDate" class="form-control">
+        </div>
+        
+      <button type="submit" class="btn btn-primary">Submit</button><br>
+
+      {% if not error %}
+      <table>
+        <th>Airline</th>
+        <th>Departure Airport</th>
+        <th>Departure Date</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Date</th>
+        <th>Arrival Time</th>
+      
+      {% for line in data %} 
+        <tr>
+          <td>{{line['airline']}}</td>
+          <td>{{line['departure_airport']}}</td>
+          <td>{{line['departure_date']}}</td>
+          <td>{{line['departure_time']}}</td>
+          <td>{{line['arrival_airport']}}</td>
+          <td>{{line['arrival_date']}}</td>
+          <td>{{line['arrival_time']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% endif %}
+    </form>
+      
+  </div>
+</div>
+{% endblock %}

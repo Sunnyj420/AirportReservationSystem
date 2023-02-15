@@ -1,0 +1,105 @@
+{% extends "layouts/base.html" %}
+{% block title %}Purchase Round Trip Flight{% endblock %}
+{% block body %}
+
+<div class="flights m-3">
+  <div class="container">
+
+    <h1>Round Trip Flight Tickets</h1>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('purchaseRoundTripTicketAuth', next=request.endpoint) }}" class="flights" method="POST">
+
+        <div class="mb-3">
+            <label for="flightAirline" class="form-label">Airline</label>
+            <input type="text" id="flightAirline" name="flightAirline" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="flightNumber" class="form-label">Departing Flight Number</label>
+            <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+        </div>
+        
+        <div class="mb-3">
+            <label for="flightDepartureAirportInput" class="form-label">Departure Airport</label>
+            <input type="text" id="flightDepartureAirportInput" name="departureAirport" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="flightDepartureDateInput" class="form-label">Departure Date</label>
+            <input type="text" id="flightDepartureDateInput" placeholder="YYYY-MM-DD" name="departureDate" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="departureTime" class="form-label">Departure Time</label>
+            <input type="text" id="departureTime" placeholder="HH:MM:SS" name="departureTime" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="arrivalAirport" class="form-label">Arrival Airport</label>
+            <input type="text" id="arrivalAirport" name="arrivalAirport" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="flightNumber2" class="form-label">Returning Flight Number</label>
+            <input type="text" id="flightNumber2" name="flightNumber2" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="returnDate" class="form-label">Return Date</label>
+            <input type="text" id="returnDate" placeholder="YYYY-MM-DD" name="returnDate" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="returnTime" class="form-label">Return Time</label>
+            <input type="text" id="returnTime" placeholder="HH:MM:SS" name="returnTime" class="form-control">
+        </div>
+
+        <br><br>
+
+        <div class="mb-3">
+            <label for="cardType" class="form-label">Card Type</label>
+            <input type="text" id="cardType" placeholder="Visa/MasterCard/American Express" name="cardType" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="################" name="cardNumber" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="nameOnCard" class="form-label">Name on Card</label>
+            <input type="text" id="nameOnCard" name="nameOnCard" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="cardExpiration" class="form-label">Card Expiration Date</label>
+            <input type="text" id="cardExpiration" placeholder="YYYY-MM-DD" name="cardExpiration" class="form-control">
+        </div>
+
+        <br><br>
+
+        <div class="mb-3">
+            <label for="customerEmail" class="form-label">Email Address</label>
+            <input type="email" id="customerEmail" placeholder="name@example.com" name="customerEmail" class="form-control">
+          </div>
+
+        <div class="mb-3">
+            <label for="currentDate" class="form-label">Current Date</label>
+            <input type="text" id="currentDate" placeholder="YYYY-MM-DD" name="currentDate" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="currentTime" class="form-label">Current Time</label>
+            <input type="text" id="currentTime" placeholder="HH:MM:SS" name="currentTime" class="form-control">
+        </div>
+        
+      <button type="submit" class="btn btn-primary">Submit</button><br>
+      
+    </form>
+      
+  </div>
+</div>
+{% endblock %}

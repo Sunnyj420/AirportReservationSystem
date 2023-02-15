@@ -1,0 +1,80 @@
+{% extends "layouts/base.html" %}
+{% block title %}Flight Ratings{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+        
+      <h1>The Most Frequent Customer(s) Over the Past Year</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('viewFrequentCustomerAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="airline" class="form-label">Airline</label>
+            <input type="text" id="airline" name="airline" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+        
+        {% if not error %}
+        <table>
+            <th>Customer Email</th>
+            <th>Flights Taken</th>
+            
+        {% for line in data1 %} 
+            <tr>
+                <td>{{line['c_email']}}</td>
+                <td>{{line['flight_occurance']}}</td>
+            </tr>
+        {% endfor %}
+        </table><br><br>
+
+        <h1>Customer History</h1>
+        
+        <div class="mb-3">
+            <label for="airline2" class="form-label">Airline</label>
+            <input type="text" id="airline2" name="airline2" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="customer" class="form-label">Customer Email</label>
+            <input type="text" id="customer" name="customer" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        <table>
+            <th>Customer Email</th>
+            <th>Ticket ID</th>
+            <th>Flight Number</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>Sold Price</th>
+            <th>Date of Purchase</th>
+            
+        {% for line in data2 %} 
+            <tr>
+                <td>{{line['c_email']}}</td>
+                <td>{{line['t_id']}}</td>
+                <td>{{line['flight_number']}}</td>
+                <td>{{line['departure_date']}}</td>
+                <td>{{line['departure_time']}}</td>
+                <td>{{line['sold_price']}}</td>
+                <td>{{line['curr_date']}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+      {% endif %}
+    </form>  
+       
+    </div>
+  </div>
+  {% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+{% block title %}Total Revenue{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>Total Revenue</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+      
+      <form action="{{ url_for('viewRevenueAuth', next=request.endpoint)}}" class="flights" method="POST">
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        {% if not error %}
+        <table>
+            <th>Total Revenue in the Past Year</th>
+            
+        {% for line in data1 %} 
+            <tr>
+            <td>{{line['Total_Revenue_Past_Year']}}</td>
+            </tr>
+        {% endfor %}
+        </table><br><br>
+        <table>
+            <th>Total Revenue in the Past Month</th>
+            
+        {% for line in data2 %} 
+            <tr>
+            <td>{{line['Total_Revenue_Past_Month']}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+      {% endif %}
+    </form>  
+       
+    </div>
+  </div>
+  {% endblock %}

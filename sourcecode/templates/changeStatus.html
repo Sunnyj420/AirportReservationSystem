@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+{% block title %}Change Flight Status{% endblock %}
+{% block body %}
+
+    <div class="flights m-3">
+      <div class="container">
+  
+      <h1>Change Flight Sta</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('changeStatusAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="staffAirline" class="form-label">Staff Airline</label>
+            <input type="text" id="staffAirline" name="staffAirline" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="airline" class="form-label">Flight Airline</label>
+          <input type="text" id="airline" name="airline" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="flightNumber" class="form-label">Flight Number</label>
+            <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureDate" class="form-label">Departure Date</label>
+            <input type="text" id="departureDate" name="departureDate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureTime" class="form-label">Departure Time</label>
+            <input type="text" id="departureTime" name="departureTime" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="flightStatus" class="form-label">New Flight Status</label>
+            <input type="text" id="flightStatus" name="flightStatus" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>      
+        
+      </div>
+    </div>
+{% endblock %}

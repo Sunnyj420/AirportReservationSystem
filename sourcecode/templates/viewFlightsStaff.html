@@ -1,0 +1,136 @@
+{% extends "layouts/base.html" %}
+{% block title %}Flights{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>Flights</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+      
+      <header>
+        <h3>Flights scheduled within 30 days</h3>
+      </header>
+      
+      <form action="{{ url_for('viewFlightsStaffAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+          <label for="airline" class="form-label">Airline</label>
+          <input type="text" id="airline" name="airline" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        {% if not error1 %}
+      <table>
+        <th>Airline</th>
+        <th>Flight Number</th>
+        <th>Departure Airport</th>
+        <th>Departure Date</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Date</th>
+        <th>Arrival Time</th>
+        
+      {% for line in data1 %} 
+        <tr>
+          <td>{{line['airline']}}</td>
+          <td>{{line['flight_number']}}</td>
+          <td>{{line['departure_airport']}}</td>
+          <td>{{line['departure_date']}}</td>
+          <td>{{line['departure_time']}}</td>
+          <td>{{line['arrival_airport']}}</td>
+          <td>{{line['arrival_date']}}</td>
+          <td>{{line['arrival_time']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% endif %}
+
+      <br><header>
+        <h3>Flights scheduled within the range</h3>
+      </header>
+      <br><div class="mb-3">
+        <label for="flightAirline" class="form-label">Airline</label>
+        <input type="text" id="flightAirline" name="flightAirline" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="sourceAirport" class="form-label">Source Airport</label>
+        <input type="text" id="sourceAirport" name="sourceAirport" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="destinationAirport" class="form-label">Destination Airport</label>
+        <input type="text" id="destinationAirport" name="destinationAirport" class="form-control">
+      </div>
+      
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="text" id="startDate" placeholder="YYYY-MM-DD" name="startDate" class="form-control">
+          </div>
+
+        <div class="mb-3">
+        <label for="endDate" class="form-label">Stop Date</label>
+        <input type="text" id="endDate" placeholder="YYYY-MM-DD" name="endDate" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+
+        {% if not error2 %}
+      <table>
+        <th>Airline</th>
+        <th>Flight Number</th>
+        <th>Departure Airport</th>
+        <th>Departure Date</th>
+        <th>Departure Time</th>
+        <th>Arrival Airport</th>
+        <th>Arrival Date</th>
+        <th>Arrival Time</th>
+        
+      {% for line in data2 %} 
+        <tr>
+          <td>{{line['airline']}}</td>
+          <td>{{line['flight_number']}}</td>
+          <td>{{line['departure_airport']}}</td>
+          <td>{{line['departure_date']}}</td>
+          <td>{{line['departure_time']}}</td>
+          <td>{{line['arrival_airport']}}</td>
+          <td>{{line['arrival_date']}}</td>
+          <td>{{line['arrival_time']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% endif %}<br>
+
+      <header>
+        <h3>Customer Info</h3>
+      </header>
+      <div class="mb-3">
+        <label for="flightNumber" class="form-label">Flight Number</label>
+        <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button><br><br>
+      {% if not error3 %}
+      <table>
+        <th>Customer Email</th>
+        
+      {% for line in data3 %} 
+        <tr>
+          <td>{{line['c_email']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% endif %}
+    </form>  
+       
+    </div>
+  </div>
+  {% endblock %}

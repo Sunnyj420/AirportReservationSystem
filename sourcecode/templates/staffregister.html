@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% block title %}Staff Registration{% endblock %}
+{% block body %}
+<div class="login m-3">
+  <div class="container">
+    <h1>Registration</h1><br>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('staffRegisterAuth', next=request.endpoint) }}" class="login" method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" name="username" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control">
+      </div><br>
+
+	  <header>
+        <h3>General Info</h3>
+      </header>
+	  <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" id="firstName" name="firstName" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" id="lastName" name="lastName" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="birthday" class="form-label">Date of Birth</label>
+        <input type="text" id="birthday" name="birthday" placeholder="YYYY-MM-DD" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+      </div>
+	  <div class="mb-3">
+        <label for="staffEmail" class="form-label">Email</label>
+        <input type="email" id="staffEmail" placeholder="name@example.com" name="staffEmail" class="form-control">
+      </div><br>
+	  <header>
+        <h3>Airline Info</h3>
+      </header>
+	  <div class="mb-3">
+        <label for="airlineName" class="form-label">Airline Name</label>
+        <input type="text" id="airlineName" name="airlineName" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

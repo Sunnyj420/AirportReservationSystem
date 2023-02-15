@@ -1,0 +1,66 @@
+{% extends "layouts/base.html" %}
+{% block title %}Flight Search{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>Flight Status Search</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+  
+      <form action="{{ url_for('flightstatusAuth', next=request.endpoint) }}" class="flights" method="POST">
+  
+          <div class="mb-3">
+              <label for="flightAirline" class="form-label">Airline</label>
+              <input type="text" id="flightAirline" name="flightAirline" class="form-control">
+          </div>
+  
+          <div class="mb-3">
+              <label for="flightNumber" class="form-label">Flight Number</label>
+              <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+          </div>
+  
+          <div class="mb-3">
+              <label for="departureDate" class="form-label">Departure Date</label>
+              <input type="text" id="departureDate" placeholder="YYYY-MM-DD" name="departureDate" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="flightArrivalDate" class="form-label">Arrival Date</label>
+            <input type="text" id="flightArrivalDate" placeholder="YYYY-MM-DD" name="flightArrivalDate" class="form-control">
+        </div>
+          
+        <button type="submit" class="btn btn-primary">Submit</button><br>
+  
+        {% if not error %}
+        <table>
+          <th>Airline</th>
+          <th>Flight Number</th>
+          <th>Departure Date</th>
+          <th>Arrival Date</th>
+          <th>Status</th>
+        
+        {% for line in data %} 
+          <tr>
+            <td>{{line['airline']}}</td>
+            <td>{{line['flight_number']}}</td>
+            <td>{{line['departure_date']}}</td>
+            <td>{{line['arrival_date']}}</td>
+            <td>{{line['flight_status']}}</td>
+          </tr>
+        {% endfor %}
+        </table>
+        {% endif %}
+      </form>
+        
+    </div>
+  </div>
+  {% endblock %}

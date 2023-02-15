@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+{% block title %}Create Flights{% endblock %}
+{% block body %}
+
+    <div class="flights m-3">
+      <div class="container">
+  
+      <h1>Flights</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('createFlightAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+            <label for="staffAirline" class="form-label">Staff Airline</label>
+            <input type="text" id="staffAirline" name="staffAirline" class="form-control">
+          </div>
+        <div class="mb-3">
+          <label for="airline" class="form-label">Flight Airline</label>
+          <input type="text" id="airline" name="airline" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="flightNumber" class="form-label">Flight Number</label>
+            <input type="text" id="flightNumber" name="flightNumber" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureAirport" class="form-label">Departure Airport</label>
+            <input type="text" id="departureAirport" name="departureAirport" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureDate" class="form-label">Departure Date</label>
+            <input type="text" id="departureDate" name="departureDate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="departureTime" class="form-label">Departure Time</label>
+            <input type="text" id="departureTime" name="departureTime" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="arrivalAirport" class="form-label">Arrival Airport</label>
+            <input type="text" id="arrivalAirport" name="arrivalAirport" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="arrivalDate" class="form-label">Arrival Date</label>
+            <input type="text" id="arrivalDate" name="arrivalDate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="arrivalTime" class="form-label">Arrival Time</label>
+            <input type="text" id="arrivalTime" name="arrivalTime" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="basePrice" class="form-label">Base Price</label>
+            <input type="text" id="basePrice" name="basePrice" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="airplane_ID" class="form-label">Airplane ID</label>
+            <input type="text" id="airplane_ID" name="airplane_ID" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="flightStatus" class="form-label">Flight Status</label>
+            <input type="text" id="flightStatus" name="flightStatus" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>      
+        
+      </div>
+    </div>
+{% endblock %}

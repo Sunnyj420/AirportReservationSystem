@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+{% block title %}Tickets{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<div class="flights m-3">
+    <div class="container">
+  
+      <h1>My Tickets</h1>
+      {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('viewTicketsAuth', next=request.endpoint) }}" class="flights" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" placeholder="name@example.com" name="email" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        {% if not error %}
+      <table>
+        <th>Ticket ID</th>
+        <th>Airline</th>
+        <th>Flight Number</th>
+        <th>Departure Date</th>
+        <th>Purchase Price</th>
+        
+      {% for line in data %} 
+        <tr>
+          <td>{{line['t_id']}}</td>
+          <td>{{line['airline']}}</td>
+          <td>{{line['flight_number']}}</td>
+          <td>{{line['departure_date']}}</td>
+          <td>{{line['sold_price']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% endif %}
+      </form>      
+        
+    </div>
+  </div>
+  {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block title %}Cancel Flight{% endblock %}
+{% block body %}
+
+<div class="flights m-3">
+  <div class="container">
+
+    <h1>Cancel Flight</h1>
+    {% if error %}
+      <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('cancelFlightAuth', next=request.endpoint) }}" class="flights" method="POST">
+
+        <div class="mb-3">
+            <label for="ticketID" class="form-label">Ticket ID</label>
+            <input type="text" id="ticketID" name="ticketID" class="form-control">
+        </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button><br>
+      
+    </form>
+      
+  </div>
+</div>
+{% endblock %}
